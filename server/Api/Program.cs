@@ -8,6 +8,7 @@ using Service;
 using Service.Blog;
 using Service.Draft;
 using Service.Repositories;
+using Service.Security;
 
 namespace Api;
 
@@ -43,6 +44,7 @@ public class Program
             .Services.AddIdentityApiEndpoints<User>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>();
+        builder.Services.AddSingleton<IPasswordHasher<User>, Argon2idPasswordHasher<User>>();
         #endregion
 
         #region Services
