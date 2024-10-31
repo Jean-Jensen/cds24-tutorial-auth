@@ -1,6 +1,7 @@
 using DataAccess;
 using DataAccess.Entities;
 using FluentValidation;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Service;
@@ -38,6 +39,10 @@ public class Program
         #endregion
 
         #region Security
+        builder
+            .Services.AddIdentityApiEndpoints<User>()
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>();
         #endregion
 
         #region Services
